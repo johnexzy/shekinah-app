@@ -86,7 +86,7 @@ export default defineComponent({
             name: "description",
             content: "Gods words tought in accuracy",
           },
-          keywords: { name: "keywords", content: "Local church, Books" },
+          keywords: { name: "keywords", content: "Local church, Teachings" },
           equiv: {
             "http-equiv": "Content-Type",
             content: "text/html; charset=UTF-8",
@@ -96,8 +96,20 @@ export default defineComponent({
             property: "og:title",
             // optional; similar to titleTemplate, but allows templating with other meta properties
             template(ogTitle) {
-              return `${ogTitle} - My Website`;
+              return `${ogTitle} - Shekinah`;
             },
+          },
+          ogDescription: {
+            name: "og:description",
+            content: "Gods words tought in accuracy",
+          },
+          ogURL: {
+            property: "og:url",
+            content: window.location.href,
+          },
+          ogImage: {
+            property: "og:image",
+            content: window.location.origin + "/opengraphs/home.png",
           },
         },
       };

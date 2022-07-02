@@ -280,71 +280,47 @@ export default defineComponent({
     //   })
     // }
   },
+  mixins: [
+    createMetaMixin(function () {
+      // "this" here refers to your component
+      return {
+        // assuming `this.myTitle` exists in your mixed in component
+        title: "Blog - Shekinah UNN branch",
+        meta: {
+          description: {
+            name: "description",
+            content: "Gods words tought in accuracy",
+          },
+          keywords: { name: "keywords", content: "Local church, Teachings" },
+          equiv: {
+            "http-equiv": "Content-Type",
+            content: "text/html; charset=UTF-8",
+          },
+          // note: for Open Graph type metadata you will need to use SSR, to ensure page is rendered by the server
+          ogTitle: {
+            property: "og:title",
+            // optional; similar to titleTemplate, but allows templating with other meta properties
+            template(ogTitle) {
+              return `${ogTitle} - Shekinah`;
+            },
+          },
+          ogDescription: {
+            name: "og:description",
+            content: "Gods words tought in accuracy",
+          },
+          ogURL: {
+            property: "og:url",
+            content: window.location.href,
+          },
+          ogImage: {
+            property: "og:image",
+            content: window.location.origin + "/opengraphs/home.png",
+          },
+        },
+      };
+    }),
+  ],
 
-  meta() {
-    const title = "Shekina UNN Blog";
-    const description =
-      "Get news and annoucement featuring events and schedules";
-    // const image = '../assets/img/world-map-vector.svg'
-    const image = window.location.origin + "/opengraphs/home.png";
-
-    return {
-      // Title tag
-      title: title,
-
-      // meta tags
-      meta: {
-        description: {
-          name: "description",
-          content: description,
-        },
-
-        // Open Graph Tags
-        ogTitle: {
-          name: "og:title",
-          content: title,
-        },
-        ogDescription: {
-          name: "og:description",
-          content: description,
-        },
-        ogURL: {
-          property: "og:url",
-          content: window.location.href,
-        },
-        ogImage: {
-          property: "og:image",
-          content: image,
-        },
-        twitterCard: { name: "twitter:card", content: "summary_large_image" },
-        twitterTitle: {
-          name: "twitter:title",
-          content: title,
-        },
-        twitterDescription: {
-          name: "twitter:description",
-          content: description,
-        },
-        twitterImage: {
-          name: "twitter:image",
-          content: image,
-        },
-        // Google / Schema.org markup:
-        schemaName: {
-          itemprop: "name",
-          content: title,
-        },
-        schemaDesc: {
-          itemprop: "description",
-          content: description,
-        },
-        schemaImage: {
-          itemprop: "image",
-          content: image,
-        },
-      },
-    };
-  },
 });
 </script>
 

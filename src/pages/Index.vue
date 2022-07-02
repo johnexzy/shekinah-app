@@ -85,14 +85,17 @@
             <q-card-section>
               <div class="flex flex-center">
                 <!-- <div class="row"> -->
-                <h4>NOW PLAYING</h4>
+                <h4>COMING SOON</h4>
                 <!-- </div> -->
               </div>
               <div class="row justify-center">
-                <q-btn color="pink" flat rounded label="PLAY RADIO" />
+                <q-btn color="pink" flat rounded label="PLAY RADIO" disable />
               </div>
               <div class="flex flex-right q-mt-lg fs-12">
-                <a href="" target="_blank" class="text-decoration-none"
+                <a
+                  href="https://mixlr.com/shekinahassemblyunn"
+                  target="_blank"
+                  class="text-decoration-none"
                   >Shekinah is on Mixir</a
                 >
               </div>
@@ -106,7 +109,7 @@
             <router-link
               href=""
               class="text-decoration-none text-weight-bold"
-              to="/"
+              to="/teachings"
               >VIEW FULL ALBUM LIST
             </router-link>
           </div>
@@ -158,8 +161,11 @@
                         label="Read more"
                         text-color="white"
                         color="primary"
+                        :to="{
+                          name: 'teaching',
+                          params: { slug: t.short_url },
+                        }"
                         padding="sm"
-                        no-caps
                         class="text-weight-medium"
                       />
                     </q-card-actions>
@@ -169,6 +175,22 @@
             </div>
           </div>
         </q-card-section>
+        <div class="row justify-center q-mt-lg">
+          <!-- <router-link
+              href=""
+              class="text-decoration-none text-weight-bold"
+              to="/teachings"
+              >VIEW FULL ALBUM LIST
+            </router-link> -->
+          <q-btn
+            label="View more"
+            text-color="primary"
+            flat
+            to="/teachings"
+            padding="sm"
+            class="text-weight-medium"
+          />
+        </div>
         <hr class="q-ma-md" />
         <div class="row">
           <div class="col-12 col-lg-12 col-md-12 col-sm-12">
@@ -224,6 +246,7 @@
 <script>
 import { defineComponent } from "vue";
 import { mapActions, mapState } from "pinia";
+import { createMetaMixin } from "quasar";
 import { useLandingStore } from "src/stores/landing";
 export default defineComponent({
   name: "PageIndex",
@@ -231,6 +254,46 @@ export default defineComponent({
     const landingStore = useLandingStore();
     return landingStore.fetchIndex();
   },
+  mixins: [
+    createMetaMixin(function () {
+      // "this" here refers to your component
+      return {
+        // assuming `this.myTitle` exists in your mixed in component
+        title: "Shekinah UNN branch",
+        meta: {
+          description: {
+            name: "description",
+            content: "Gods words tought in accuracy",
+          },
+          keywords: { name: "keywords", content: "Local church, Teachings" },
+          equiv: {
+            "http-equiv": "Content-Type",
+            content: "text/html; charset=UTF-8",
+          },
+          // note: for Open Graph type metadata you will need to use SSR, to ensure page is rendered by the server
+          ogTitle: {
+            property: "og:title",
+            // optional; similar to titleTemplate, but allows templating with other meta properties
+            template(ogTitle) {
+              return `${ogTitle} - Shekinah`;
+            },
+          },
+          ogDescription: {
+            name: "og:description",
+            content: "Gods words tought in accuracy",
+          },
+          ogURL: {
+            property: "og:url",
+            content: window.location.href,
+          },
+          ogImage: {
+            property: "og:image",
+            content: window.location.origin + "/opengraphs/home.png",
+          },
+        },
+      };
+    }),
+  ],
   data() {
     return {
       base: process.env.VUE_APP_API_BASE,

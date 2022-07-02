@@ -1,5 +1,6 @@
 <script>
 import { defineComponent } from "vue";
+import { createMetaMixin } from "quasar";
 import { mapActions, mapState } from "pinia";
 import { useBookStore } from "src/stores/book";
 export default defineComponent({
@@ -8,6 +9,46 @@ export default defineComponent({
     const bookStore = useBookStore();
     return bookStore.fetchBookByUrl(currentRoute.params.slug);
   },
+  mixins: [
+    createMetaMixin(function () {
+      // "this" here refers to your component
+      return {
+        // assuming `this.myTitle` exists in your mixed in component
+        title: "Shekinah UNN branch",
+        meta: {
+          description: {
+            name: "description",
+            content: "Gods words tought in accuracy",
+          },
+          keywords: { name: "keywords", content: "Local church, Teachings" },
+          equiv: {
+            "http-equiv": "Content-Type",
+            content: "text/html; charset=UTF-8",
+          },
+          // note: for Open Graph type metadata you will need to use SSR, to ensure page is rendered by the server
+          ogTitle: {
+            property: "og:title",
+            // optional; similar to titleTemplate, but allows templating with other meta properties
+            template(ogTitle) {
+              return `${ogTitle} - Shekinah`;
+            },
+          },
+          ogDescription: {
+            name: "og:description",
+            content: "Gods words tought in accuracy",
+          },
+          ogURL: {
+            property: "og:url",
+            content: window.location.href,
+          },
+          ogImage: {
+            property: "og:image",
+            content: window.location.origin + "/opengraphs/home.png",
+          },
+        },
+      };
+    }),
+  ],
   data() {
     return {
       baseUrl: process.env.VUE_APP_API_BASE,

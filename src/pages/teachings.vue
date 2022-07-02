@@ -110,6 +110,18 @@ export default defineComponent({
               return `${ogTitle} - My Website`;
             },
           },
+          ogDescription: {
+            name: "og:description",
+            content: "Gods words tought in accuracy",
+          },
+          ogURL: {
+            property: "og:url",
+            content: window.location.href,
+          },
+          ogImage: {
+            property: "og:image",
+            content: window.location.origin + "/opengraphs/home.png",
+          },
         },
       };
     }),

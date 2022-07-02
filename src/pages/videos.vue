@@ -88,7 +88,7 @@ export default defineComponent({
       // "this" here refers to your component
       return {
         // assuming `this.myTitle` exists in your mixed in component
-        title: "Videos - Shekinah UNN branch",
+        title: "Shekinah UNN branch",
         meta: {
           description: {
             name: "description",
@@ -104,8 +104,20 @@ export default defineComponent({
             property: "og:title",
             // optional; similar to titleTemplate, but allows templating with other meta properties
             template(ogTitle) {
-              return `${ogTitle} - My Website`;
+              return `${ogTitle} - Shekinah`;
             },
+          },
+          ogDescription: {
+            name: "og:description",
+            content: "Gods words tought in accuracy",
+          },
+          ogURL: {
+            property: "og:url",
+            content: window.location.href,
+          },
+          ogImage: {
+            property: "og:image",
+            content: window.location.origin + "/opengraphs/home.png",
           },
         },
       };
