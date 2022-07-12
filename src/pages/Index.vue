@@ -6,10 +6,11 @@
       :autoplay="8000"
       class="q-ma-xs"
     >
-      <slide-component v-for="(m, i) in mainCarousel" :key="i">
+      <slide-component v-for="(m, i) in landing.carousel" :key="i">
         <div
-          class="carousel__item main_item"
-          :style="` min-height: ${minHeightSlide}px;background-image: url(${m.image});`"
+          class="carousel__item main_item cursor-pointer"
+          @click="gotoLink(m.carousel_url)"
+          :style="` min-height: ${minHeightSlide}px;background-image: url(${m.carousel_image});`"
         ></div>
       </slide-component>
 
@@ -246,7 +247,7 @@
 <script>
 import { defineComponent } from "vue";
 import { mapActions, mapState } from "pinia";
-import { createMetaMixin } from "quasar";
+import { createMetaMixin, openURL } from "quasar";
 import { useLandingStore } from "src/stores/landing";
 export default defineComponent({
   name: "PageIndex",
@@ -422,6 +423,9 @@ export default defineComponent({
     },
     activeCollecction(slug) {
       return this.active_collection !== slug;
+    },
+    gotoLink(l) {
+      openURL(l);
     },
   },
 });
