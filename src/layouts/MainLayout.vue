@@ -221,16 +221,22 @@
           />
         </div>
       </q-toolbar>
-      <q-toolbar spellcheck inset class="nav-menu fs-17">
+      <q-toolbar
+        spellcheck
+        inset
+        class="nav-menu fs-17"
+        style="justify-content: center !important"
+      >
         <!-- <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" /> -->
         <router-link to="/" custom v-slot="{ navigate }">
-          <q-toolbar-title
+          <div
             @click="navigate"
+            class="q-mr-md"
             @keypress.enter="navigate"
             :style="$q.screen.gt.sm ? '' : 'text-align: center;'"
           >
             <img src="~assets/logo.png" title="Bringing sons to glory" />
-          </q-toolbar-title>
+          </div>
         </router-link>
 
         <div class="q-pa-lg gt-sm">
