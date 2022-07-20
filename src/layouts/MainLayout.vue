@@ -47,6 +47,9 @@
               <q-item clickable v-close-popup to="/ebooks">
                 <q-item-section>Books</q-item-section>
               </q-item>
+              <q-item clickable v-close-popup to="/songs">
+                <q-item-section>Songs</q-item-section>
+              </q-item>
               <q-separator dark />
               <q-item clickable v-close-popup to="/videos">
                 <q-item-section>Videos</q-item-section>
@@ -111,7 +114,7 @@
           >
             <!-- <q-list v-if="searchResults.hasOwnProperty('data')" bordered style="width: 500px"> -->
             <q-scroll-area
-              style="height: 400px; background: #ddd"
+              style="height: 600px; background: #ddd"
               class="q-pa-md"
             >
               <div class="row">
@@ -148,7 +151,7 @@
                       <p class="text-weight-bold text-black-50 q-mb-md">
                         {{ t.teaching_title }}
                       </p>
-                      <p class="text-italic text-grey-8">
+                      <p class="gt-sm text-italic text-grey-8">
                         {{ truncate(t.short_details, 60) }}
                       </p>
                     </div>
@@ -248,6 +251,14 @@
         </div>
         <div class="q-pa-lg gt-sm">
           <router-link
+            to="/songs"
+            exact-active-class="exact-active-class"
+            class="text-decoration-none text-capitalize"
+            >Songs</router-link
+          >
+        </div>
+        <div class="q-pa-lg gt-sm">
+          <router-link
             to="/videos"
             exact-active-class="exact-active-class"
             class="text-decoration-none text-capitalize"
@@ -339,12 +350,16 @@ import { defineComponent } from "vue";
 import { mapActions, mapState } from "pinia";
 import { useBlogStore } from "src/stores/blog";
 import { useSearchStore } from "src/stores/search";
+import { useLandingStore } from "src/stores/landing";
 export default defineComponent({
-  async preFetch({ store }) {
+  preFetch({ store }) {
     const blogStore = useBlogStore();
+    const landingStore = useLandingStore();
+
     blogStore.fetchFeaturedPosts();
     blogStore.fetchCategories();
     blogStore.fetchAnnouncement();
+    return landingStore.fetchIndex();
   },
   name: "MainLayout",
 

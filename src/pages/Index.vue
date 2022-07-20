@@ -4,6 +4,7 @@
       :itemsToShow="1"
       :wrapAround="true"
       :autoplay="8000"
+      v-if="landing.carousel.length"
       class="q-ma-xs"
     >
       <slide-component v-for="(m, i) in landing.carousel" :key="i">
@@ -89,16 +90,32 @@
                 <h4>COMING SOON</h4>
                 <!-- </div> -->
               </div>
-              <div class="row justify-center">
+              <!-- <div class="row justify-center">
                 <q-btn color="pink" flat rounded label="PLAY RADIO" disable />
+              </div> -->
+              <div class="row justify-center">
+                <q-btn
+                  text-color="pink"
+                  flat
+                  rounded
+                  size="md"
+                  label="Join Telegram Live Stream"
+                >
+                </q-btn>
               </div>
               <div class="flex flex-right q-mt-lg fs-12">
                 <a
                   href="https://mixlr.com/shekinahassemblyunn"
                   target="_blank"
                   class="text-decoration-none"
-                  >Shekinah is on Mixir</a
-                >
+                  >Shekinah is on Mixlr</a
+                >, &nbsp;
+                <!-- <a
+                  href="https://mixlr.com/shekinahassemblyunn"
+                  target="_blank"
+                  class="text-decoration-none"
+                  >Shekinah is on Telegram live</a
+                > -->
               </div>
             </q-card-section>
           </div>
@@ -251,10 +268,6 @@ import { createMetaMixin, openURL } from "quasar";
 import { useLandingStore } from "src/stores/landing";
 export default defineComponent({
   name: "PageIndex",
-  preFetch() {
-    const landingStore = useLandingStore();
-    return landingStore.fetchIndex();
-  },
   mixins: [
     createMetaMixin(function () {
       // "this" here refers to your component

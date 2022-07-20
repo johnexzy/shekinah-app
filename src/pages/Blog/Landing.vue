@@ -227,6 +227,7 @@
 
 <script>
 import { mapState, mapActions } from "pinia";
+import { createMetaMixin } from "quasar";
 import { useBlogStore } from "src/stores/blog";
 import { defineComponent } from "vue";
 import { date } from "quasar";
@@ -320,7 +321,6 @@ export default defineComponent({
       };
     }),
   ],
-
 });
 </script>
 
