@@ -198,9 +198,20 @@ export default defineComponent({
           </h4>
           <!-- <span class="liner"></span> -->
         </div>
-        <div class="row" v-html="Teaching.teaching_details"></div>
+        <div
+          class="row teaching_detail"
+          v-html="Teaching.teaching_details"
+        ></div>
         <!-- <h6 class=" text-weight-light text-monospace">{{ Teaching.short_details }}</h6> -->
       </q-card-section>
     </q-card>
   </q-page>
 </template>
+<style lang="scss">
+.teaching_details {
+  text-align: justify;
+  div {
+    margin: 6px 0;
+  }
+}
+</style>
