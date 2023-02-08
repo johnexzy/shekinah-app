@@ -166,7 +166,7 @@ export default defineComponent({
                   />
                 </q-item-section>
                 <q-item-section>Track {{ i + 1 }}</q-item-section>
-                <q-item-section side>
+                <!-- <q-item-section side>
                   <a
                     style="text-decoration: none"
                     :href="t.src"
@@ -174,7 +174,7 @@ export default defineComponent({
                   >
                     <q-btn color="orange" flat dense icon="download" />
                   </a>
-                </q-item-section>
+                </q-item-section> -->
               </q-item>
             </q-list>
             <!-- </div> -->
@@ -186,7 +186,7 @@ export default defineComponent({
       </q-card-section>
       <q-separator spaced inset dark />
       <div v-if="player.src">
-        <AudioPlayer :option="player" ref="mplayer" />
+        <!-- <AudioPlayer :option="player" ref="mplayer" /> -->
       </div>
       <q-card-section
         class="q-pa-md q-ma-md excerpt"
@@ -198,10 +198,7 @@ export default defineComponent({
           </h4>
           <!-- <span class="liner"></span> -->
         </div>
-        <div
-          class="row teaching_detail"
-          v-html="Teaching.teaching_details"
-        ></div>
+        <div class="teaching_details" v-html="Teaching.teaching_details"></div>
         <!-- <h6 class=" text-weight-light text-monospace">{{ Teaching.short_details }}</h6> -->
       </q-card-section>
     </q-card>
